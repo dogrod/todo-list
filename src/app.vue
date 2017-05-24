@@ -1,15 +1,7 @@
 <template lang="jade">
-  div
-    layout
-      router-view
+  router-view
 </template>
 
-<script>
-  import layout from './views/layout/layout.vue'
-  export default {
-    name: 'app',
-    components: {
-      layout
-    }
-  }
-</script>
+<style lang="stylus">
+@import '~assets/styles/common'
+</style>
