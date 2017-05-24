@@ -8,5 +8,14 @@ module.exports = {
       ? config.build.productionSourceMap
       : config.dev.cssSourceMap,
     extract: isProduction
-  })
+  }),
+  postcss: [
+    require('autoprefixer')({
+      browsers: ['> 1%']
+    }),
+    require('postcss-pxtorem')({
+      replace: false,
+      minPixelValue: 3
+    })
+  ]
 }
