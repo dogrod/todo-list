@@ -1,8 +1,9 @@
 <template lang="jade">
-.todo
-  todoHeader
-  todoNew
-  todoItems
+.todos
+  user-info
+  todo-header
+  todo-new
+  todo-items
 </template>
 
 <script>
@@ -10,18 +11,20 @@
 import todoHeader from '@/components/business/todo-header/todo-header'
 import todoNew from '@/components/business/todo-new/todo-new'
 import todoItems from '@/components/business/todo-items/todo-items'
+import userInfo from '@/components/business/user-info/user-info'
 
 export default {
   components: {
     todoHeader,
     todoNew,
-    todoItems
+    todoItems,
+    userInfo
   }
 }
 </script>
 
 <style lang="stylus">
-.todo
+.todos
   margin: 0 auto
 
   width: 60%

@@ -10,6 +10,7 @@ import VueRx from 'vue-rx'
 import lodash from 'lodash'
 import AV from 'leancloud-storage'
 import 'iview/dist/styles/iview.css'    // 使用 CSS
+import leancloud from '@/utils/leancloud'
 
 import App from './app'
 import router from './router'
@@ -31,7 +32,7 @@ Vue.config.productionTip = false
 
 // clone axios to Vue.$http
 Vue.prototype.$http = axios
-Vue.prototype.AV = AV
+Vue.prototype.$leancloud = leancloud
 Vue.prototype._ = lodash
 
 /* eslint-disable no-new */

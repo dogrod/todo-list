@@ -1,7 +1,9 @@
 [include]
 
 [ignore]
-.*/node_modules/.*
+.*/node_modules/vue-router/.*
+.*/node_modules/vue/.*
+
 .*/test/.*
 .*/build/.*
 .*/config/.*
@@ -9,6 +11,7 @@
 [libs]
 
 [options]
+module.name_mapper='\(@\)' -> '<PROJECT_ROOT>/src/'
 module.file_ext=.vue
 module.file_ext=.js
 

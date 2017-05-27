@@ -5,8 +5,8 @@ import state from './state'
 import getters from './getters'
 import actions from './actions'
 import mutations from './mutations'
-import demo from './modules/demo'
 import todos from './modules/todos'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
@@ -16,8 +16,8 @@ export default new Vuex.Store({
   actions,
   mutations,
   modules: {
-    demo,
-    todos
+    todos,
+    user
   },
   strict: true
 })

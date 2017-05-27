@@ -4,6 +4,7 @@
 ## TO-DO
 
 - [ ] Basic feature
+- [ ] Switch http request to leancloud REST API
 - [ ] Switch to own UI components
 - [ ] Switch to own backend ( Node.js or python )
 - [ ] e.t.c.
