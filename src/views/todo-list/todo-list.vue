@@ -25,8 +25,9 @@ export default {
 
 <style lang="stylus">
 .todos
-  margin: 0 auto
+  margin 0 auto
 
-  width: 60%
-  min-width: 500px
+  width 50%
+  min-width 300px
+  max-width 600px
 </style>

@@ -17,7 +17,7 @@ $bannerSize = 60px
 .todo__header
   display inline-block
   padding 15px 60px
-  margin 100px
+  margin 100px auto
   background $themeColor
   border-radius 35px
   box-shadow inset 0 7em 10em -5em rgba(255, 255, 255, .6)
