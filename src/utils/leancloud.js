@@ -31,5 +31,14 @@ export default {
   isLogged() {
     let currentUser = AV.User.current()
     return !!currentUser
+  },
+  /**
+   * 获取数据方法
+   * @param {string} className 所需class名称
+   * @return {Object} 数据对象
+   */
+  fetchData(className: string) {
+    let query = new AV.Query(className)
+    return query.find()
   }
 }

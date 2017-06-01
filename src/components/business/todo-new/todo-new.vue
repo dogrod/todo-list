@@ -47,7 +47,7 @@ export default {
      * 获得焦点事件
      */
     handleFocus() {
-      // if (this.inputFocused) return
+      if (this.inputFocused) return
 
       this.setInputFocused(true)
     },
@@ -83,6 +83,7 @@ export default {
 
   font-size $fontLarge
   background $white
+  border 1px solid $border
   border-radius 22px
   transition box-shadow .3s ease
 

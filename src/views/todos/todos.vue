@@ -1,9 +1,10 @@
 <template lang="jade">
 .todos
-  user-info
-  todo-header
-  todo-new
-  todo-items
+  .todos__container
+    user-info
+    todo-header
+    todo-new
+    todo-items
 </template>
 
 <script>
@@ -25,9 +26,20 @@ export default {
 
 <style lang="stylus">
 .todos
-  margin 0 auto
+  position relative
+  width 100%
+  height 100%
 
-  width 50%
-  min-width 300px
-  max-width 600px
+  overflow auto
+
+  &::-webkit-scrollbar
+    display none
+
+  &__container
+    margin 0 auto
+
+    width 50%
+    height 100%
+    min-width 350px
+    max-width 600px
 </style>

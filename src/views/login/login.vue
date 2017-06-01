@@ -5,12 +5,14 @@
     .login__content__input-group
       Input(
         v-model="userInfo.username",
-        placeholder="请输入用户名"
+        placeholder="请输入用户名",
+        @keyup.13.native="handleLogin"
       )
       Input(
         v-model="userInfo.password",
         placeholder="请输入密码",
         type="password",
+        @keyup.13.native="handleLogin"
       )
     .login__content__button-group
       Button(

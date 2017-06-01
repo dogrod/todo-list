@@ -1,7 +1,7 @@
 <template lang="jade">
 .user-info
-  .user-info--logged(v-if="currentUser")
-    span.user-info__nickname 当前用户：{{ currentUser.nickname }} ( {{ currentUser.email }} )
+  .user-info--logged(v-if="currentUser.id")
+    span.user-info__nickname 当前用户：{{ currentUser.get('nickname') }} ( {{ currentUser.get('email') }} )
     span.user-info__logout(@click="handleLogOut") 登出
   .user-info--unlogged(v-else)
     span.user-info__login(@click="handleLogin") 登陆
@@ -16,7 +16,7 @@ export default {
   computed: {
     ...mapState({
       currentUser({ user }) {
-        return (user.currentUser) ? (user.currentUser.attributes) : ({})
+        return (user.currentUser) ? (user.currentUser) : ({})
       }
     }),
   },
