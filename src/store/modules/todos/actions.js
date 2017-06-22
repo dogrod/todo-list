@@ -20,5 +20,5 @@ export default {
       .then((todos) => {
         store.commit(types.SET_TODO_ITEMS, todos)
       })
-  }
+  },
 }

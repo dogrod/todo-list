@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
     router-view
 </template>
 
@@ -7,7 +7,3 @@
 export default {
 }
 </script>
-
-<style lang="stylus">
-@import '~assets/styles/common'
-</style>

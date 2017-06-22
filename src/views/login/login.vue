@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
 .login
   .login__content
     .login__content__title 长得就像登陆页
@@ -31,15 +31,15 @@ export default {
     return {
       userInfo: { // 用户信息，非全局状态故不进入store
         username: '',
-        password: ''
-      }
+        password: '',
+      },
     }
   },
   methods: {
     ...mapActions([
       // 获取当前用户action
       'login',
-      'setCurrentUser'
+      'setCurrentUser',
     ]),
     /**
      * 登陆事件
@@ -55,7 +55,7 @@ export default {
     if (this.$leancloud.isLogged()) {
       this.$router.push('/')
     }
-  }
+  },
 }
 </script>
 

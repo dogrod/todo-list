@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
 .todo__header
   .todo__header__icon
     img(:src="logoSrc")
@@ -12,9 +12,9 @@ import logoSrc from '@/assets/images/logo.png'
 export default {
   data() {
     return {
-      logoSrc
+      logoSrc,
     }
-  }
+  },
 }
 </script>
 
@@ -25,7 +25,7 @@ $bannerSize = 100px
 
 .todo__header
   display inline-block
-  padding 15px 60px
+  padding 15px 60px 10px
   margin 100px auto 10px
   // background $themeColor
   border-radius 35px
@@ -52,6 +52,7 @@ $bannerSize = 100px
     cursor default
     user-select none
     color $themeColor
+    line-height 1
     font-weight 200
     font-size $bannerSize
     border-radius $borderRadius

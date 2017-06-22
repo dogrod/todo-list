@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
 .user-info
   .user-info--logged(v-if="currentUser.id")
     span.user-info__nickname 当前用户：{{ currentUser.get('nickname') }} ( {{ currentUser.get('email') }} )
@@ -17,7 +17,7 @@ export default {
     ...mapState({
       currentUser({ user }) {
         return (user.currentUser) ? (user.currentUser) : ({})
-      }
+      },
     }),
   },
   methods: {
@@ -36,7 +36,7 @@ export default {
      * 获取当前用户信息
      */
     fetchCurrentUser() {
-      let currentUser = this.$leancloud.getCurrentUser()
+      const currentUser = this.$leancloud.getCurrentUser()
       this.setCurrentUser(currentUser)
     },
     /**
@@ -61,7 +61,7 @@ export default {
   },
   mounted() {
     this.fetchCurrentUser()
-  }
+  },
 }
 </script>
 

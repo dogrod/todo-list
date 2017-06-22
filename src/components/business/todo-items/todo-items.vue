@@ -1,7 +1,11 @@
-<template lang="jade">
+<template lang="pug">
 .todo-items(v-if="todoItems.length")
-  ul
-    li.todo-item(v-for="item in todoItems")
+  .todo-items__label What's next
+  card(
+    v-for="item in todoItems",
+    :key="item.get('title')"
+  )
+    .todo-item
       .todo-item__title {{ item.get('title') }}
       .todo-item__create-time 待办状态 {{ item.get('state') }}
 </template>
@@ -9,13 +13,17 @@
 <script>
 /* @flow */
 import { mapState, mapActions } from 'vuex'
+import Card from '@/components/ui/card/card.vue'
 
 export default {
+  components: {
+    Card,
+  },
   computed: {
     ...mapState({
       todoItems({ todos }) {
         return (todos.todoItems) ? (todos.todoItems) : ([])
-      }
+      },
     }),
   },
   methods: {
@@ -26,19 +34,24 @@ export default {
   },
   mounted() {
     this.fetchTodoItems()
-  }
+  },
 }
 </script>
 
 <style lang="stylus">
 @import '~assets/styles/variables'
 
-.todo-item
-  padding 15px
-  margin-bottom 20px
+.todo-items__label
+  padding-left 10px
+  margin-bottom 10px
 
   text-align left
-  background rgba(255, 255, 255, .7)
-  border 1px solid $border
-  border-radius $borderRadius
+  font-size $fontExtraLarge
+
+
+.todo-item
+  text-align left
+
+  > *
+    margin-bottom 10px
 </style>

@@ -11,6 +11,7 @@ import lodash from 'lodash'
 import AV from 'leancloud-storage'
 import 'iview/dist/styles/iview.css'    // 使用 CSS
 import leancloud from '@/utils/leancloud'
+import 'assets/styles/base.styl'
 
 import App from './app'
 import router from './router'
@@ -20,11 +21,12 @@ const appId = 'zLRQWvW53abdgU6i5fPFf0xk-gzGzoHsz'
 const appKey = 'Lz4DlYueowfaPctkzc1olYAC'
 AV.init({ appId, appKey })
 
+global._ = lodash
 // RxJS config
 Vue.use(VueRx, {
   Observable,
   Subscription,
-  Subject
+  Subject,
 })
 Vue.use(iView)
 
@@ -33,7 +35,6 @@ Vue.config.productionTip = false
 // clone axios to Vue.$http
 Vue.prototype.$http = axios
 Vue.prototype.$leancloud = leancloud
-Vue.prototype._ = lodash
 
 /* eslint-disable no-new */
 new Vue({
@@ -41,5 +42,5 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: { App },
 })

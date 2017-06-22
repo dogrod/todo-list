@@ -10,5 +10,5 @@ export default {
    */
   [types.SET_CURRENT_USER](state: Object, currentUser: Object) {
     _.set(state, 'currentUser', currentUser)
-  }
+  },
 }

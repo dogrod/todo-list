@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
 .todos
   .todos__container
     user-info
@@ -19,8 +19,8 @@ export default {
     todoHeader,
     todoNew,
     todoItems,
-    userInfo
-  }
+    userInfo,
+  },
 }
 </script>
 
@@ -38,8 +38,8 @@ export default {
   &__container
     margin 0 auto
 
-    width 50%
-    height 100%
+    width 60%
+    max-width 800px
     min-width 350px
-    max-width 600px
+    height 100%
 </style>

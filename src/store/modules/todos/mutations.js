@@ -18,5 +18,5 @@ export default {
    */
   [types.SET_TODO_ITEMS](state: Object, todoItems: Array<any>) {
     _.set(state, 'todoItems', todoItems)
-  }
+  },
 }

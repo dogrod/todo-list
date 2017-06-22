@@ -7,11 +7,11 @@ export default [
     children: [{
       path: '',
       name: 'Todos',
-      component: r => require.ensure([], () => r(require('@/views/todos/todos')), 'todos')
+      component: r => require.ensure([], () => r(require('@/views/todos/todos')), 'todos'),
     }, {
       path: 'login',
       name: 'Login',
-      component: r => require.ensure([], () => r(require('@/views/login/login')), 'login')
-    }]
-  }
+      component: r => require.ensure([], () => r(require('@/views/login/login')), 'login'),
+    }],
+  },
 ]

@@ -1,6 +1,8 @@
-<template lang="jade">
+<template lang="pug">
 .todo__new
-  .todo__input__bar(:class=" { 'todo__input__bar--focus': inputFocused } ")
+  .todo__input__bar(
+    :class=" { 'todo__input__bar--focus': inputFocused } "
+  )
     .todo__input__text
       input(
         placeholder="What needs to be done?",
@@ -8,89 +10,36 @@
         @focus="handleFocus",
         @blur="handleBlur"
       )
-    .todo__input__icon
+    .todo__input__icon(v-show="inputFocused")
       Icon(type="android-add")
 </template>
 
-<script>
-/* @flow */
-import { mapState, mapMutations } from 'vuex'
-import * as types from '@/store/types'
-
-export default {
-  data() {
-    return {
-      inputFocused: false
-    }
-  },
-  computed: {
-    newTodoItemInstance: {
-      get() {
-        return this.newTodoItem
-      },
-      set(value: string) {
-        return this.setNewTodoItem(value)
-      }
-    },
-    ...mapState({
-      newTodoItem: ({ todos }) => todos.newTodoItem
-    }),
-  },
-  methods: {
-    /**
-     * Mutation 辅助函数
-     */
-    ...mapMutations({
-      setNewTodoItem: types.SET_NEW_TODO_ITEM
-    }),
-    /**
-     * 获得焦点事件
-     */
-    handleFocus() {
-      if (this.inputFocused) return
-
-      this.setInputFocused(true)
-    },
-    /**
-     * 失去焦点事件
-     */
-    handleBlur() {
-      if (!this.inputFocused) return
-
-      this.setInputFocused(false)
-    },
-    /**
-     * 设置inputFocused
-     * @param {boolean} isFocused 是否获得焦点
-     */
-    setInputFocused(isFocused: boolean) {
-      this.inputFocused = isFocused
-    }
-  },
-}
-</script>
+<script src="./new-todo.js"></script>
 
 <style lang="stylus">
 @import '~assets/styles/variables'
+@import '~assets/styles/mixins'
 
 .todo__input__bar
   display flex
   justify-content space-between
-  margin-bottom 50px
+  margin-bottom 80px
   overflow hidden
 
-  height 44px
-
+  color $content
   font-size $fontLarge
-  background $white
-  border 1px solid $border
-  border-radius 22px
-  transition box-shadow .3s ease
+  background transparent
+  // border 1px solid $border
+  border-radius $borderRadius
+  transition all .3s ease
 
   &:hover,
   &.todo__input__bar--focus
-    box-shadow 0 3px 8px 0 rgba(0,0,0,0.1),
-               0 0 0 1px rgba(0,0,0,0.08)
+    background $white
+    box-shadow 0 3px 8px 0 rgba(0,0,0,0.1)
+
+  &.todo__input__bar--focus input
+      text-align left
 
 .todo__input__text
   flex-grow 1
@@ -101,11 +50,10 @@ export default {
 
 
     width 100%
-    height 100%
+    height 60px
 
+    text-align center
     color $themeColor
-    border none
-    outline none
     line-height 1.5
 
     &::-webkit-input-placeholder
@@ -118,4 +66,6 @@ export default {
 
   cursor pointer
   font-size 28px
+
+  flex-center()
 </style>

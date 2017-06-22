@@ -3,5 +3,5 @@ const todoItems = []
 
 export default {
   newTodoItem,
-  todoItems
+  todoItems,
 }
