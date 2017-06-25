@@ -12,8 +12,9 @@ export default {
 @import '~assets/styles/variables'
 
 .card
+  display: flex;
   margin-bottom 30px
-  padding 25px
+  // padding 25px
 
   color $content
   // background-image linear-gradient(-45deg, $primary 2%, $lightPrimary 100%)

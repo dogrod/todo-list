@@ -31,7 +31,7 @@
   background transparent
   // border 1px solid $border
   border-radius $borderRadius
-  transition all .3s ease
+  transition all .5s ease
 
   &:hover,
   &.todo__input__bar--focus

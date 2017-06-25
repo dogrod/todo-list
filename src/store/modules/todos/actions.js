@@ -1,4 +1,5 @@
 /* @flow */
+import _ from 'lodash'
 import * as types from '@/store/types'
 import leancloud from '@/utils/leancloud'
 
@@ -18,7 +19,17 @@ export default {
   fetchTodoItems(store: Object) {
     leancloud.fetchData('TodoList')
       .then((todos) => {
-        store.commit(types.SET_TODO_ITEMS, todos)
+        _.forEach(todos, (todo) => {
+          // assembling todo item
+          const todoItem = {
+            priority: todo.get('priority'),
+            state: todo.get('state'),
+            title: todo.get('title'),
+            createTime: todo.get('createdAt').toLocaleString(),
+          }
+          // push assembled todo item to todo list in store
+          store.commit(types.PUSH_TODO_ITEM, todoItem)
+        })
       })
   },
 }
