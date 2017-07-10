@@ -6,15 +6,59 @@
     .todo__input__text
       input(
         placeholder="What needs to be done?",
-        v-model="newTodoItemInstance",
+        v-model="newTodoItem",
         @focus="handleFocus",
         @blur="handleBlur"
       )
-    .todo__input__icon(v-show="inputFocused")
+    .todo__input__icon(
+      v-show="inputFocused",
+      @click="handleSubmitNewTodo"
+    )
       Icon(type="android-add")
 </template>
 
-<script src="./new-todo.js"></script>
+<script>
+export default {
+  data() {
+    return {
+      newTodoItem: '',
+      inputFocused: false,
+    }
+  },
+  methods: {
+    /**
+     * submit new todo event handler
+     */
+    handleSubmitNewTodo() {
+      
+    },
+    /**
+     * focus event handler
+     */
+    handleFocus() {
+      if (this.inputFocused) return
+
+      this.setInputFocused(true)
+    },
+    /**
+     * blur event handler
+     */
+    handleBlur() {
+      if (!this.inputFocused) return
+
+      this.setInputFocused(false)
+    },
+    /**
+     * set input-focused state
+     * @param {boolean} isFocused - isFocused
+     */
+    setInputFocused(isFocused) {
+      this.inputFocused = isFocused
+    },
+  },
+}
+
+</script>
 
 <style lang="stylus">
 @import '~assets/styles/variables'
@@ -33,10 +77,15 @@
   border-radius $borderRadius
   transition all .5s ease
 
-  &:hover,
+  &:hover
+    input
+      border-bottom: 1px solid rgba(0,0,0,.2);
+
   &.todo__input__bar--focus
     background $white
     box-shadow 0 3px 8px 0 rgba(0,0,0,0.1)
+    input
+      border-color transparent
 
   &.todo__input__bar--focus input
       text-align left

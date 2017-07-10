@@ -1,25 +1,65 @@
 <template lang="pug">
 .todos
   .todos__container
-    user-info
     todo-header
-    todo-new
+    new-todo
     todo-items
+      todo-item(
+        v-for="todo in todos",
+        :key="todo.title",
+        :title="todo.title",
+        :priority="todo.priority",
+        :state="todo.state",
+        :createTime="todo.createTime",
+      )
 </template>
 
 <script>
 /* @flow */
 import todoHeader from '@/components/business/todo-header/todo-header'
-import todoNew from '@/components/business/todo-new/todo-new'
-import todoItems from '@/components/business/todo-items/todo-items'
-import userInfo from '@/components/business/user-info/user-info'
+import newTodo from '@/components/business/new-todo/new-todo.vue'
+import todoItems from '@/components/business/todo-items/todo-items.vue'
+import todoItem from '@/components/business/todo-items/todo-item.vue'
 
 export default {
+  name: 'Todos',
   components: {
     todoHeader,
-    todoNew,
+    newTodo,
     todoItems,
-    userInfo,
+    todoItem,
+  },
+  data() {
+    return {
+      todos: [],
+    }
+  },
+  methods: {
+    fetchTodos() {
+      this.$leancloud.fetchData('TodoList')
+        .then((todos) => {
+          global._.forEach(todos, (todo) => {
+            // assembling todo item
+            const todoTask = this.transferTodoItem(todo)
+            // push assembled todo item to todo list in store
+            this.pushTodoItem(todoTask)
+          })
+        })
+    },
+    transferTodoItem(todo) {
+      return {
+        priority: todo.get('priority'),
+        state: todo.get('state'),
+        title: todo.get('title'),
+        createTime: todo.get('createdAt').toLocaleString(),
+      }
+    },
+    pushTodoItem(todo) {
+      this.todos.push(todo)
+    },
+  },
+  created() {
+    this.fetchTodos()
   },
 }
 </script>
@@ -28,9 +68,6 @@ export default {
 .todos
   position relative
   width 100%
-  height 100%
-
-  overflow auto
 
   &::-webkit-scrollbar
     display none

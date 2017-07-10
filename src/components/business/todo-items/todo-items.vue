@@ -1,17 +1,14 @@
 <template lang="pug">
-.todo-items(v-if="todoItems.length")
+.todo-items
   .todo-items__label What's next
-  todo-item(
-    v-for="item in todoItems",
-    :key="item.title",
-    :title="item.title",
-    :priority="item.priority",
-    :state="item.state",
-    :createTime="item.createTime",
-  )
+  slot
 </template>
 
-<script src="./todo-items.js"></script>
+<script>
+export default {
+  name: 'todoItems',
+}
+</script>
 
 <style lang="stylus">
 @import '~assets/styles/variables'

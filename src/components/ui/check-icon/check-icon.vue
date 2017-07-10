@@ -15,7 +15,7 @@ export default {
     disabled: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   computed: {
     /**
@@ -28,7 +28,7 @@ export default {
         this.checked ? `${prefixClass}--checked` : `${prefixClass}--unchecked`,
         {
           [`${prefixClass}--disabled`]: this.disabled,
-        }
+        },
       ]
     },
     /**

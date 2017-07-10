@@ -31,6 +31,7 @@ import checkIcon from '@/components/ui/check-icon/check-icon.vue'
 const prefixClass = 'todo-item'
 
 export default {
+  name: 'TodoItem',
   props: {
     title: {
       type: String,

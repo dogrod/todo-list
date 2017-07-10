@@ -56,7 +56,9 @@ export default {
      * 跳转登陆页方法
      */
     goLogin() {
-      this.$router.push('login')
+      this.$router.push({
+        path: '/login',
+      })
     },
   },
   mounted() {
@@ -79,6 +81,7 @@ export default {
 
   display flex
   flex-direction row-reverse
+  z-index 2017
 
   // text 按钮样式
   &__logout,
