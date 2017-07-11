@@ -8,7 +8,8 @@
         placeholder="What needs to be done?",
         v-model="newTodoItem",
         @focus="handleFocus",
-        @blur="handleBlur"
+        @blur="handleBlur",
+        @keyup.13="handleSubmitNewTodo"
       )
     .todo__input__icon(
       v-show="inputFocused",
@@ -18,6 +19,8 @@
 </template>
 
 <script>
+import * as classNames from '@/class-names'
+
 export default {
   data() {
     return {
@@ -29,8 +32,19 @@ export default {
     /**
      * submit new todo event handler
      */
-    handleSubmitNewTodo() {
-      
+    async handleSubmitNewTodo() {
+      if (!this.newTodoItem.trim()) return
+
+      try {
+        const res = await this.submitNewTodo()
+
+        this.emitAppendTodoEvent(res)
+
+        this.newTodoItem = ''
+        this.setInputFocused(false)
+      } catch (e) {
+        console.error(e)
+      }
     },
     /**
      * focus event handler
@@ -44,9 +58,33 @@ export default {
      * blur event handler
      */
     handleBlur() {
-      if (!this.inputFocused) return
+      if (!this.inputFocused || this.newTodoItem.trim()) return
 
       this.setInputFocused(false)
+    },
+    /**
+     * submit new todo function
+     * @return {promise.<object>} return a promise object
+     */
+    async submitNewTodo() {
+      try {
+        const res = await this.$leancloud.appendObject(classNames.TODOS, {
+          priority: 5,
+          state: 0,
+          title: this.newTodoItem,
+        })
+
+        return res
+      } catch (e) {
+        return Promise.reject(e)
+      }
+    },
+    /**
+     * emit append-todo event
+     * @param {object} e - event data model
+     */
+    emitAppendTodoEvent(e) {
+      this.$emit('append-todo', e)
     },
     /**
      * set input-focused state

@@ -2,15 +2,17 @@
 .todos
   .todos__container
     todo-header
-    new-todo
-    todo-items
+    new-todo(@append-todo="handleAppendTodo")
+    todo-items(v-if="todos.length")
       todo-item(
         v-for="todo in todos",
         :key="todo.title",
+        :id="todo.id",
         :title="todo.title",
-        :priority="todo.priority",
         :state="todo.state",
+        :priority="todo.priority",
         :createTime="todo.createTime",
+        @deleted="handleTodoDeleted"
       )
 </template>
 
@@ -20,6 +22,8 @@ import todoHeader from '@/components/business/todo-header/todo-header'
 import newTodo from '@/components/business/new-todo/new-todo.vue'
 import todoItems from '@/components/business/todo-items/todo-items.vue'
 import todoItem from '@/components/business/todo-items/todo-item.vue'
+
+import * as classNames from '@/class-names.js'
 
 export default {
   name: 'Todos',
@@ -35,27 +39,40 @@ export default {
     }
   },
   methods: {
+    handleAppendTodo(res) {
+      const todoTask = this.transferTodoItem(res)
+
+      this.unshiftTodoItem(todoTask)
+    },
+    handleTodoDeleted(id) {
+      this.todos.forEach((value, index) => {
+        if (value.id === id) {
+          this.todos.splice(index, 1)
+        }
+      })
+    },
     fetchTodos() {
-      this.$leancloud.fetchData('TodoList')
+      this.$leancloud.fetchData(classNames.TODOS)
         .then((todos) => {
           global._.forEach(todos, (todo) => {
             // assembling todo item
             const todoTask = this.transferTodoItem(todo)
             // push assembled todo item to todo list in store
-            this.pushTodoItem(todoTask)
+            this.unshiftTodoItem(todoTask)
           })
         })
     },
     transferTodoItem(todo) {
       return {
+        createTime: todo.get('createdAt').toLocaleString(),
+        id: todo.id,
         priority: todo.get('priority'),
         state: todo.get('state'),
         title: todo.get('title'),
-        createTime: todo.get('createdAt').toLocaleString(),
       }
     },
-    pushTodoItem(todo) {
-      this.todos.push(todo)
+    unshiftTodoItem(todo) {
+      this.todos.unshift(todo)
     },
   },
   created() {

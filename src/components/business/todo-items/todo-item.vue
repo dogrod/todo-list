@@ -20,13 +20,16 @@ card
         ) 编辑
         Button(
           type="text",
-          v-if="state !== 3"
+          v-if="state !== 3",
+          @click="handleDeleteTodo"
         ) 删除
 </template>
 
 <script>
 import card from '@/components/ui/card/card.vue'
 import checkIcon from '@/components/ui/check-icon/check-icon.vue'
+
+import * as classNames from '@/class-names.js'
 
 const prefixClass = 'todo-item'
 
@@ -41,6 +44,9 @@ export default {
     },
     state: {
       type: Number,
+    },
+    id: {
+      type: String,
     },
   },
   components: {
@@ -64,7 +70,7 @@ export default {
         }
       }
       return convertedState
-    },
+    
     titleClasses() {
       return [
         `${prefixClass}__title`,
@@ -72,6 +78,32 @@ export default {
           [`${prefixClass}__title--deleted`]: this.state === 3,
         },
       ]
+    },
+  },
+  methods: {
+    /**
+     * delete todo item event handler
+     */
+    handleDeleteTodo() {
+      this.deleteTodo()
+    },
+    /**
+     * delete todo item function
+     */
+    async deleteTodo() {
+      try {
+        const res = await this.$leancloud.deleteObject(classNames.TODOS, this.id)
+
+        this.emitDeletedEvent()
+      } catch (e) {
+        console.error(e)
+      }
+    },
+    /**
+     * emit deleted event
+     */
+    emitDeletedEvent() {
+      this.$emit('deleted', this.id)
     },
   },
 }
