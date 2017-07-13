@@ -20,7 +20,6 @@ card
         ) 编辑
         Button(
           type="text",
-          v-if="state !== 3",
           @click="handleDeleteTodo"
         ) 删除
 </template>
@@ -70,7 +69,7 @@ export default {
         }
       }
       return convertedState
-    
+    },
     titleClasses() {
       return [
         `${prefixClass}__title`,

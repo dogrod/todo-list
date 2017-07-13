@@ -23,4 +23,7 @@ export default {
   width 100%
 
   overflow auto
+
+  &::-webkit-scrollbar
+    display none
 </style>
