@@ -20,5 +20,5 @@ export default {
   // background-image linear-gradient(-45deg, $primary 2%, $lightPrimary 100%)
   background $white
   border-radius $borderRadius
-  box-shadow 0 3px 15px 0 rgba(0,0,0,0.1)
+  box-shadow 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)
 </style>

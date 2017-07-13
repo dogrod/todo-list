@@ -12,7 +12,6 @@
         @keyup.13="handleSubmitNewTodo"
       )
     .todo__input__icon(
-      v-show="inputFocused",
       @click="handleSubmitNewTodo"
     )
       Icon(type="android-add")
@@ -116,17 +115,20 @@ export default {
   transition all .5s ease
   border-bottom 1px solid transparent
 
+
+
   &:hover
     border-bottom 1px solid rgba(0,0,0,.1)
 
   &.todo__input__bar--focus
     background $white
-    box-shadow 0 3px 8px 0 rgba(0,0,0,0.1)
-    input
-      border-color transparent
+    box-shadow 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)
 
-  &.todo__input__bar--focus input
+    input
       text-align left
+
+    .todo__input__icon
+      opacity .9
 
 .todo__input__text
   flex-grow 1
@@ -153,6 +155,8 @@ export default {
 
   cursor pointer
   font-size 28px
+  opacity 0
+  transition opacity .5s ease
 
   flex-center()
 </style>

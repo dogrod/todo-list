@@ -12,7 +12,7 @@ card
         .todo-item__desc Todo description
       .todo-item__state {{ stateConversion }}
     .todo-item__info
-      .todo-item__create-time  {{ createTime }}
+      .todo-item__label
       .todo-item__operation
         Button(
           type="text",
@@ -154,7 +154,7 @@ $deleted = $disabled
 
     border-top 1px solid $border
 
-  &__create-time
+  &__label
     display: flex;
     align-items: center;
 </style>
