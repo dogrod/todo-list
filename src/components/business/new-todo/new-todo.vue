@@ -43,7 +43,7 @@ export default {
         this.newTodoItem = ''
         this.setInputFocused(false)
       } catch (e) {
-        console.error(e)
+        this.$Notice.error(JSON.stringify(e))
       }
     },
     /**
@@ -114,10 +114,10 @@ export default {
   // border 1px solid $border
   border-radius $borderRadius
   transition all .5s ease
+  border-bottom 1px solid transparent
 
   &:hover
-    input
-      border-bottom: 1px solid rgba(0,0,0,.2);
+    border-bottom 1px solid rgba(0,0,0,.1)
 
   &.todo__input__bar--focus
     background $white

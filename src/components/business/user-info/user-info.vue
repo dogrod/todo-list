@@ -1,7 +1,10 @@
 <template lang="pug">
 .user-info
+  burger-menu
+  .user-info__slot
+    slot
   .user-info--logged(v-if="currentUser.id")
-    span.user-info__nickname 当前用户：{{ currentUser.get('nickname') }} ( {{ currentUser.get('email') }} )
+    span.user-info__nickname {{ currentUser.get('nickname') }} ( {{ currentUser.get('email') }} )
     span.user-info__logout(@click="handleLogOut") 登出
   .user-info--unlogged(v-else)
     span.user-info__login(@click="handleLogin") 登陆
@@ -11,8 +14,12 @@
 <script>
 /* @flow */
 import { mapState, mapActions } from 'vuex'
+import burgerMenu from '@/components/ui/burger-menu/burger-menu.vue'
 
 export default {
+  components: {
+    burgerMenu,
+  },
   computed: {
     ...mapState({
       currentUser({ user }) {
@@ -74,14 +81,15 @@ export default {
   position absolute
   top 0
   left 0
-  padding 10px 10px 0 0
+  padding 0 10px 0 0
 
   width 100%
-  height 28px
+  height 60px
+  line-height 60px
 
   display flex
-  flex-direction row-reverse
-  z-index 2017
+  justify-content space-between
+  z-index 1017
 
   // text 按钮样式
   &__logout,

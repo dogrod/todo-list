@@ -83,8 +83,11 @@ export default {
 
 <style lang="stylus">
 .todos
-  position relative
+  position absolute
+  top 60px
+  bottom  0
   width 100%
+  overflow auto
 
   &::-webkit-scrollbar
     display none

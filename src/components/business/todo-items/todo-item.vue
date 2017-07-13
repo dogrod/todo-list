@@ -12,14 +12,16 @@ card
         .todo-item__desc Todo description
       .todo-item__state {{ stateConversion }}
     .todo-item__info
-      .todo-item__create-time 创建于 {{ createTime }}
+      .todo-item__create-time  {{ createTime }}
       .todo-item__operation
         Button(
           type="text",
+          size="small",
           v-if="state === 0"
         ) 编辑
         Button(
           type="text",
+          size="small",
           @click="handleDeleteTodo"
         ) 删除
 </template>
@@ -91,11 +93,11 @@ export default {
      */
     async deleteTodo() {
       try {
-        const res = await this.$leancloud.deleteObject(classNames.TODOS, this.id)
+        await this.$leancloud.deleteObject(classNames.TODOS, this.id)
 
         this.emitDeletedEvent()
       } catch (e) {
-        console.error(e)
+        this.$Notice.error(JSON.stringify(e))
       }
     },
     /**
